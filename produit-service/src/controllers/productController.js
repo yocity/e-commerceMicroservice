@@ -53,6 +53,20 @@ export const createProduct = async (req, res) => {
     res.status(500).json({ message: 'Erreur interne du serveur.' });
   }
 };
+// Pour tester cette fonctionnalité avec Postman, assurez-vous d'envoyer une requête POST vers l'URL appropriée avec un corps JSON contenant les champs suivants :
+// {
+//   "name": "Nom du produit",
+//   "description": "Description du produit",
+//   "price": 10.99,
+//   "stock": 100,
+//   "categoryId": 1,
+//   "attributes": [
+//     {
+//       "attributeId": 1,
+//       "value": "Valeur de l'attribut"
+//     }
+//   ]
+// }
 
 // Obtenir les détails d'un produit
 export const getProductById = async (req, res) => {

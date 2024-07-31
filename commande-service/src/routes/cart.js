@@ -64,6 +64,7 @@ router.post('/:userId/add', async (req, res) => {
         res.status(500).json({ message: 'Erreur lors de l\'ajout du produit au panier', error });
     }
 });
+// Pour tester ce lien avec Postman, assurez-vous d'envoyer une requête POST vers l'URL `/api/cart/:userId/add` avec un corps JSON contenant `productId` et `quantity`. Par exemple, si l'ID de l'utilisateur est 1 et que vous voulez ajouter un produit avec l'ID 2 en quantité de 3, votre corps JSON devrait ressembler à cela : `{ "productId": 2, "quantity": 3 }`.
 
 // Supprimer un produit du panier
 router.delete('/:userId/remove/:productId', async (req, res) => {

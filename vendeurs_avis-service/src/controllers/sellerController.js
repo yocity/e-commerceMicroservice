@@ -76,3 +76,13 @@ export const trackSellerPerformance = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
+// Obtenir tous les vendeurs
+export const getAllSellers = async (req, res) => {
+  try {
+    const sellers = await Seller.findAll();
+    res.status(200).json(sellers);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};

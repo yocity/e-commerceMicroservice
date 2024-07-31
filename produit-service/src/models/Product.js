@@ -1,7 +1,9 @@
-// src/models/Product.js
+// models/Product.js
 
 import { DataTypes } from 'sequelize';
 import sequelize from '../config/database.js';
+import Attribute from './Attribute.js';  // Assurez-vous que c'est importé correctement
+import ProductAttribute from './ProductAttribute.js';
 
 const Product = sequelize.define('Product', {
   id: {
@@ -29,13 +31,10 @@ const Product = sequelize.define('Product', {
     type: DataTypes.INTEGER,
     allowNull: false,
     references: {
-      model: 'categories',
+      model: 'Categories',
       key: 'id',
     },
   },
-}, {
-  tableName: 'products',
-  timestamps: false,
 });
 
 export default Product;

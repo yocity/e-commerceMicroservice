@@ -24,14 +24,16 @@ const Campaign = sequelize.define('Campaign', {
   description: {
     type: DataTypes.TEXT,
   },
-  created_at: {
+  createdAt: {
     type: DataTypes.DATE,
     defaultValue: DataTypes.NOW,
   },
-  updated_at: {
+  updatedAt: {
     type: DataTypes.DATE,
     defaultValue: DataTypes.NOW,
   },
+}, {
+  tableName: 'campaigns',
 });
 
 export default Campaign;

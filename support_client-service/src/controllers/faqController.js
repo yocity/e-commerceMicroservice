@@ -5,9 +5,13 @@ import FAQ from '../models/FAQ.js';
 export const getAllFAQs = async (req, res) => {
   try {
     const faqs = await FAQ.findAll();
+    if (!faqs) {
+      return res.status(404).json({ error: 'Aucune FAQ trouvée' });
+    }
     res.json(faqs);
   } catch (error) {
-    res.status(500).json({ error: 'Erreur serveur' });
+    console.error('Erreur lors de la récupération des FAQs:', error);
+    res.status(500).json({ error: 'Erreur serveur: ' + error.message });
   }
 };
 

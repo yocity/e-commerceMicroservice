@@ -16,15 +16,17 @@ const FAQ = sequelize.define('FAQ', {
     type: DataTypes.TEXT,
     allowNull: false,
   },
-  created_at: {
+  createdAt: {
     type: DataTypes.DATE,
     defaultValue: DataTypes.NOW,
   },
-  updated_at: {
+  updatedAt: {
     type: DataTypes.DATE,
     defaultValue: DataTypes.NOW,
     onUpdate: DataTypes.NOW,
   },
+}, {
+  tableName: 'faqs',
 });
 
 export default FAQ;

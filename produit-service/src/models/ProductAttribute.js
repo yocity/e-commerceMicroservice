@@ -6,16 +6,27 @@ import sequelize from '../config/database.js';
 const ProductAttribute = sequelize.define('ProductAttribute', {
   id: {
     type: DataTypes.INTEGER,
-    autoIncrement: true,
     primaryKey: true,
+    autoIncrement: true,
+  },
+  product_id: {
+    type: DataTypes.INTEGER,
+    references: {
+      model: 'Products',
+      key: 'id',
+    },
+  },
+  attribute_id: {
+    type: DataTypes.INTEGER,
+    references: {
+      model: 'Attributes',
+      key: 'id',
+    },
   },
   value: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-}, {
-  tableName: 'product_attributes',
-  underscored: true,
 });
 
 export default ProductAttribute;

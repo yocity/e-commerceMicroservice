@@ -32,6 +32,17 @@ const Message = sequelize.define('Message', {
     type: DataTypes.DATE,
     defaultValue: DataTypes.NOW,
   },
+  createdAt: {
+    type: DataTypes.DATE,
+    defaultValue: DataTypes.NOW,
+  },
+  updatedAt: {
+    type: DataTypes.DATE,
+    defaultValue: DataTypes.NOW,
+    onUpdate: DataTypes.NOW,
+  },
+}, {
+  timestamps: true,
 });
 
 Message.belongsTo(Ticket, { foreignKey: 'ticket_id' });

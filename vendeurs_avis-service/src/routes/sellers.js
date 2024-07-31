@@ -6,6 +6,7 @@ import {
   createStore,
   getStoreBySeller,
   trackSellerPerformance,
+  getAllSellers,
 } from '../controllers/sellerController.js';
 
 const router = express.Router();
@@ -24,5 +25,8 @@ router.get('/:sellerId/stores', getStoreBySeller);
 
 // Suivre la performance d'un vendeur
 router.get('/:sellerId/performance', trackSellerPerformance);
+
+// Obtenir tous les vendeurs
+router.get('/', getAllSellers);
 
 export default router;

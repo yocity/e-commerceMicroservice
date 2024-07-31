@@ -1,6 +1,6 @@
 // models/ShippingAddress.js
 const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/database');
+const sequelize = require('../database');
 
 class ShippingAddress extends Model {}
 

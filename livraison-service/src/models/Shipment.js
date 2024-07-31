@@ -1,6 +1,6 @@
 // models/Shipment.js
 const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/database'); // Configuration de votre base de données
+const sequelize = require('../database'); // Configuration de votre base de données
 
 class Shipment extends Model {}
 

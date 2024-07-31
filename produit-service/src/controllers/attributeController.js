@@ -1,6 +1,6 @@
 // controllers/attributeController.js
 
-import { Attribute, ProductAttribute } from '../models/index.js';
+import { Product, Attribute, ProductAttribute } from '../models/index.js';
 
 // Créer un attribut
 export const createAttribute = async (req, res) => {
@@ -80,12 +80,18 @@ export const deleteAttribute = async (req, res) => {
 export const listAttributes = async (req, res) => {
   try {
     const attributes = await Attribute.findAll({
-      include: [{ model: ProductAttribute, as: 'productAttributes' }],
+      include: [
+        {
+          model: Product,
+          as: 'productAttributes', // Assurez-vous que cet alias correspond exactement à celui des associations
+          through: { attributes: [] }, // Ignorer les champs de la table de jointure
+        },
+      ],
     });
 
     res.json(attributes);
   } catch (error) {
-    console.error("Erreur lors de la récupération des attributs :", error);
+    console.error('Erreur lors de la récupération des attributs :', error);
     res.status(500).json({ message: 'Erreur interne du serveur.' });
   }
 };

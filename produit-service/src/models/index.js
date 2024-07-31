@@ -1,26 +1,29 @@
-// src/models/index.js
+// models/index.js
 
-import sequelize from '../config/database.js';
 import Product from './Product.js';
 import Category from './Category.js';
-import Attribute from './Attribute.js'; // Assurez-vous que l'importation est correcte
+import Attribute from './Attribute.js';
 import ProductAttribute from './ProductAttribute.js';
 
-// Définition des relations
-Category.hasMany(Product, { foreignKey: 'category_id', as: 'products' });
-Product.belongsTo(Category, { foreignKey: 'category_id', as: 'category' });
+// Définir les relations entre les modèles
+Category.hasMany(Product, {
+  as: 'products',
+  foreignKey: 'category_id',
+});
+Product.belongsTo(Category, {
+  as: 'category',
+  foreignKey: 'category_id',
+});
 
-Product.belongsToMany(Attribute, { through: ProductAttribute, foreignKey: 'product_id', as: 'attributes' });
-Attribute.belongsToMany(Product, { through: ProductAttribute, foreignKey: 'attribute_id', as: 'products' });
+Product.belongsToMany(Attribute, {
+  through: ProductAttribute,
+  as: 'productAttributes', // Assurez-vous que cet alias est unique
+  foreignKey: 'product_id',
+});
+Attribute.belongsToMany(Product, {
+  through: ProductAttribute,
+  as: 'productAttributes', // Assurez-vous que cet alias est unique et identique à celui de Product
+  foreignKey: 'attribute_id',
+});
 
-ProductAttribute.belongsTo(Product, { foreignKey: 'product_id' });
-ProductAttribute.belongsTo(Attribute, { foreignKey: 'attribute_id' });
-
-// Exportation des modèles
-export {
-  sequelize,
-  Product,
-  Category,
-  Attribute,  // Assurez-vous que l'exportation est correcte
-  ProductAttribute,
-};
+export { Product, Category, Attribute, ProductAttribute };
