@@ -27,6 +27,8 @@ const ProductAttribute = sequelize.define('ProductAttribute', {
     type: DataTypes.STRING,
     allowNull: false,
   },
+}, {
+  tableName: 'product_attributes',
 });
 
 export default ProductAttribute;
