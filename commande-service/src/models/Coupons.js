@@ -32,12 +32,20 @@ Coupons.init(
             type: DataTypes.BOOLEAN,
             defaultValue: true,
         },
+        archive: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false,
+        },
+        softDelete: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false,
+        },
     },
     {
         sequelize,
         modelName: 'Coupons',
         tableName: 'Coupons',
-        timestamps: false,
+        timestamps: true,
     }
 );
 

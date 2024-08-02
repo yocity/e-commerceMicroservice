@@ -31,6 +31,14 @@ const Review = sequelize.define('Review', {
     type: DataTypes.ENUM('pending', 'approved', 'rejected'),
     defaultValue: 'pending',
   },
+  archive: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
+  softDelete: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
   createdAt: {
     type: DataTypes.DATE,
     defaultValue: DataTypes.NOW,

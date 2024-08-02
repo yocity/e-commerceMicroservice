@@ -27,6 +27,14 @@ const ReviewResponse = sequelize.define('ReviewResponse', {
     type: DataTypes.DATE,
     defaultValue: DataTypes.NOW,
   },
+  archive: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
+  softDelete: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
 }, {
   tableName: 'review_responses',
 });

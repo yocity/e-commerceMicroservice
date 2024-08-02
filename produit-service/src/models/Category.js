@@ -17,9 +17,17 @@ const Category = sequelize.define('Category', {
     type: DataTypes.TEXT,
     allowNull: true,
   },
+  archive: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
+  softDelete: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
 }, {
   tableName: 'categories',
-  timestamps: false, // Si vous ne voulez pas de champs createdAt et updatedAt
+  timestamps: true, // Si vous ne voulez pas de champs createdAt et updatedAt
 });
 
 export default Category;

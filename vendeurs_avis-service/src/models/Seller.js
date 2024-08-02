@@ -35,6 +35,14 @@ const Seller = sequelize.define('Seller', {
     type: DataTypes.DATE,
     defaultValue: DataTypes.NOW,
   },
+  archive: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
+  softDelete: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
 }, {
   tableName: 'sellers',
 });

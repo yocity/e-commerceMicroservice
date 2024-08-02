@@ -24,11 +24,19 @@ const Ticket = sequelize.define('Ticket', {
     type: DataTypes.ENUM('open', 'closed', 'pending'),
     defaultValue: 'open',
   },
-  created_at: {
+  archive: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
+  softDelete: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
+  createdAt: {
     type: DataTypes.DATE,
     defaultValue: DataTypes.NOW,
   },
-  updated_at: {
+  updatedAt: {
     type: DataTypes.DATE,
     defaultValue: DataTypes.NOW,
     onUpdate: DataTypes.NOW,

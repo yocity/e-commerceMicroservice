@@ -32,6 +32,14 @@ Shipment.init({
     actualDeliveryDate: {
         type: DataTypes.DATE,
         allowNull: true,
+    },
+    archive: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+    },
+    softDelete: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
     }
 }, {
     sequelize,

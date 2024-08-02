@@ -41,6 +41,14 @@ const Message = sequelize.define('Message', {
     defaultValue: DataTypes.NOW,
     onUpdate: DataTypes.NOW,
   },
+  archive: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
+  softDelete: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
 }, {
   timestamps: true,
 });

@@ -16,6 +16,14 @@ DeliveryEstimate.init({
     estimatedDeliveryTime: {
         type: DataTypes.INTEGER,  // En jours
         allowNull: true,
+    },
+    archive: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+    },
+    softDelete: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
     }
 }, {
     sequelize,

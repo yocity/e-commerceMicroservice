@@ -28,6 +28,14 @@ Returns.init(
             type: DataTypes.ENUM('requested', 'processed', 'completed'),
             defaultValue: 'requested',
         },
+        archive: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false,
+        },
+        softDelete: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false,
+        },
     },
     {
         sequelize,

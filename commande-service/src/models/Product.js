@@ -33,9 +33,17 @@ const Product = sequelize.define('Product', {
       key: 'id',
     },
   },
+  archive: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
+  softDelete: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
 }, {
   tableName: 'products',
-  timestamps: false,
+  timestamps: true,
 });
 
 export default Product;

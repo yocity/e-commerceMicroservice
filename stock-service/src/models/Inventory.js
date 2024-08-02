@@ -14,9 +14,17 @@ const Inventory = sequelize.define('Inventory', {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
+  archive: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
+  softDelete: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
 }, {
   tableName: 'inventory', // Assurez-vous que le nom correspond à celui utilisé dans votre base de données
-  timestamps: false,
+  timestamps: true,
 });
 
 // Définir les relations

@@ -16,6 +16,14 @@ const FAQ = sequelize.define('FAQ', {
     type: DataTypes.TEXT,
     allowNull: false,
   },
+  archive: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
+  softDelete: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
   createdAt: {
     type: DataTypes.DATE,
     defaultValue: DataTypes.NOW,

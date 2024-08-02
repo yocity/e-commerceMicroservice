@@ -32,6 +32,14 @@ const SellerPerformance = sequelize.define('SellerPerformance', {
     type: DataTypes.DATE,
     defaultValue: DataTypes.NOW,
   },
+  archive: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
+  softDelete: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
 }, {
   tableName: 'seller_performance',
 });

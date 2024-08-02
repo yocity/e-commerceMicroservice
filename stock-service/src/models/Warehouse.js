@@ -16,9 +16,17 @@ const Warehouse = sequelize.define('Warehouse', {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
+  archive: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
+  softdelete: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
 }, {
   tableName: 'warehouses', // Assurez-vous que le nom correspond à celui utilisé dans votre base de données
-  timestamps: false,
+  timestamps: true,
 });
 
 export default Warehouse;

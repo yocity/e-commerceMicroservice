@@ -32,6 +32,14 @@ ShippingAddress.init({
     country: {
         type: DataTypes.STRING,
         allowNull: false,
+    },
+    archive: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+    },
+    softDelete: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
     }
 }, {
     sequelize,

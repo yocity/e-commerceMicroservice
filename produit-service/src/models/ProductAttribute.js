@@ -27,6 +27,14 @@ const ProductAttribute = sequelize.define('ProductAttribute', {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  archive: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
+  softdelete: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
 }, {
   tableName: 'product_attributes',
 });

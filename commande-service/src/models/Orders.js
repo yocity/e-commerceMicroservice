@@ -36,6 +36,14 @@ Orders.init(
             type: DataTypes.DECIMAL(10, 2),
             defaultValue: 0,
         },
+        archive: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false,
+        },
+        softDelete: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false,
+        },
     },
     {
         sequelize,
