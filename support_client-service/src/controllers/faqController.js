@@ -64,7 +64,7 @@ export const deleteFAQ = async (req, res) => {
     if (!faq) {
       return res.status(404).json({ error: 'FAQ non trouvée' });
     }
-    await faq.destroy();
+    await faq.update({ softDelete: true });
     res.json({ message: 'FAQ supprimée avec succès' });
   } catch (error) {
     res.status(500).json({ error: 'Erreur serveur' });

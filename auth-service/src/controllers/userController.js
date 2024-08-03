@@ -144,11 +144,57 @@ export const deleteUser = async (req, res) => {
   try {
     const user = await User.findByPk(req.params.id);
     if (user) {
-      await user.destroy();
+      await user.update({ softDelete: true });
       res.status(204).json(); // No Content
     } else {
       res.status(404).json({ message: 'User not found' });
     }
+  } catch (error) {
+    res.status(500).json({ message: 'Server error', error: error.message });
+  }
+};
+
+// Fonction pour obtenir le nombre d'utilisateurs inscrits par période
+export const getUsersCountByPeriod = async (req, res) => {
+  try {
+    const { period } = req.query; // Période demandée (jour, mois, année)
+    let date;
+    switch (period) {
+      case 'jour':
+        date = new Date();
+        date.setHours(0, 0, 0, 0); // Début de la journée actuelle
+        break;
+      case 'mois':
+        date = new Date();
+        date.setMonth(date.getMonth(), 0); // Début du mois actuel
+        break;
+      case 'année':
+        date = new Date();
+        date.setFullYear(date.getFullYear(), 0, 0); // Début de l'année actuelle
+        break;
+      default:
+        return res.status(400).json({ message: 'Invalid period' });
+    }
+
+    const usersCount = await User.count({
+      attributes: [],
+      where: {
+        createdAt: {
+          [Op.gte]: date,
+        },
+      },
+    });
+
+    const usersList = await User.findAll({
+      attributes: ['id', 'username', 'email', 'createdAt'],
+      where: {
+        createdAt: {
+          [Op.gte]: date,
+        },
+      },
+    });
+
+    res.json({ usersCount, usersList });
   } catch (error) {
     res.status(500).json({ message: 'Server error', error: error.message });
   }

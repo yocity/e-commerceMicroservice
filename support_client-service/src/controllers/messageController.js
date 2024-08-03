@@ -76,7 +76,7 @@ export const deleteMessage = async (req, res) => {
     if (!message) {
       return res.status(404).json({ error: 'Message non trouvé' });
     }
-    await message.destroy();
+    await message.update({ softDelete: true });
     res.status(200).json({ message: 'Message supprimé avec succès' });
   } catch (error) {
     res.status(500).json({ error: 'Erreur serveur' });

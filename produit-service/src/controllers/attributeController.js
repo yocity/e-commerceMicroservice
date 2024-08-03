@@ -66,10 +66,9 @@ export const deleteAttribute = async (req, res) => {
     if (!attribute) {
       return res.status(404).json({ message: 'Attribut non trouvé.' });
     }
-
-    await attribute.destroy();
-
+    await attribute.update({ softDelete: true });
     res.json({ message: 'Attribut supprimé avec succès.' });
+    
   } catch (error) {
     console.error("Erreur lors de la suppression de l'attribut :", error);
     res.status(500).json({ message: 'Erreur interne du serveur.' });

@@ -67,7 +67,7 @@ export const deleteCategory = async (req, res) => {
       return res.status(404).json({ message: 'Catégorie non trouvée.' });
     }
 
-    await category.destroy();
+    await category.update({ softDelete: true });
 
     res.json({ message: 'Catégorie supprimée avec succès.' });
   } catch (error) {

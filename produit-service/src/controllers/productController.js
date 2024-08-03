@@ -148,7 +148,7 @@ export const deleteProduct = async (req, res) => {
       return res.status(404).json({ message: 'Produit non trouvé.' });
     }
 
-    await product.destroy();
+    await product.update({ softDelete: true });
 
     res.json({ message: 'Produit supprimé avec succès.' });
   } catch (error) {

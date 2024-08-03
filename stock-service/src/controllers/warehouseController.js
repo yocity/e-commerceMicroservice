@@ -60,7 +60,7 @@ const deleteWarehouse = async (req, res) => {
     if (!warehouse) {
       return res.status(404).json({ message: 'Entrepôt non trouvé.' });
     }
-    await warehouse.destroy();
+    await warehouse.update({ softDelete: true });
     res.status(200).json({ message: 'Entrepôt supprimé avec succès.' });
   } catch (error) {
     res.status(500).json({ message: 'Erreur lors de la suppression de l\'entrepôt.', error });

@@ -60,8 +60,8 @@ export const deleteTicket = async (req, res) => {
     if (!ticket) {
       return res.status(404).json({ error: 'Ticket non trouvé' });
     }
-    await ticket.destroy();
-    res.json({ message: 'Ticket supprimé avec succès' });
+    await ticket.update({ softDelete: true });
+    res.json({ message: 'Ticket restauré avec succès' });
   } catch (error) {
     res.status(500).json({ error: 'Erreur serveur' });
   }

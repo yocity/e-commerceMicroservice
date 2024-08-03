@@ -73,6 +73,21 @@ router.get('/:userId', async (req, res) => {
     }
 });
 
+// Obtenir l'historique des commandes d'un utilisateur
+router.get('/:userId/history', async (req, res) => {
+    try {
+        const orders = await Orders.findAll({
+            where: { user_id: req.params.userId },
+            include: [OrderItems],
+            order: [['createdAt', 'DESC']], // Trier les commandes par date de création décroissante
+        });
+
+        res.json(orders);
+    } catch (error) {
+        res.status(500).json({ message: 'Erreur lors de la récupération de l\'historique des commandes', error });
+    }
+});
+
 // Mettre à jour le statut d'une commande
 router.patch('/:orderId/status', async (req, res) => {
     const { status } = req.body;

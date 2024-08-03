@@ -80,7 +80,7 @@ const deleteStock = async (req, res) => {
       return res.status(404).json({ message: 'Enregistrement de stock non trouvé.' });
     }
 
-    await inventory.destroy();
+    await inventory.update({ softDelete: true });
 
     res.status(200).json({ message: 'Enregistrement de stock supprimé avec succès.' });
   } catch (error) {

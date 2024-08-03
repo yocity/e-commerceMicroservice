@@ -1,5 +1,5 @@
 import express from 'express';
-import { register, login, logout, getProfile } from '../controllers/userController.js';
+import { register, login, logout, getProfile, getUsersCountByPeriod } from '../controllers/userController.js';
 import * as userController from '../controllers/userController.js';
 import { protect } from '../middleware.js';
 
@@ -16,5 +16,6 @@ router.get('/users', protect, userController.getAllUsers);  // Route pour obteni
 router.get('/users/:id', protect, userController.getUserById); // Route pour obtenir un utilisateur par ID
 router.put('/users/:id', protect, userController.updateUser); // Route pour mettre à jour un utilisateur
 router.delete('/users/:id', protect, userController.deleteUser); // Route pour supprimer un utilisateur
+router.get('/users/count', protect, getUsersCountByPeriod); // Route pour obtenir le nombre d'utilisateurs inscrits par période
 
 export default router;
