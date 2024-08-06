@@ -1,7 +1,7 @@
 // routes/orders.js
 
 import express from 'express';
-import { Orders, OrderItems, Cart, CartItems, Coupons, sequelize } from '../models/index.js';
+import { Orders, OrderItems, Cart, CartItems, Coupons } from '../models/index.js';
 import { calculateCartTotal } from '../utils/calculateCart.js';
 import { sendOrderConfirmationEmail } from '../services/emailService.js'; // Déplacement de la logique d'email à un service séparé
 import rateLimit from 'express-rate-limit'; // Limitation de taux pour la sécurité
