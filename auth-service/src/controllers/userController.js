@@ -1,7 +1,30 @@
+import express from 'express';
+import rateLimit from 'express-rate-limit'; // Importer express-rate-limit
 import User from '../models/User.js'; // Assurez-vous que le chemin est correct
 import generateToken from '../utils/generateToken.js'; // Assurez-vous que le chemin est correct
 import nodemailer from 'nodemailer';
 import { Op } from 'sequelize'; // Importer Op de sequelize pour les opérateurs de requêtes
+
+// Limitation de taux pour les demandes d'inscription
+const registerLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 5, // Limiter chaque IP à 5 requêtes par fenêtre
+  message: 'Trop de tentatives d\'inscription à partir de cette IP. Veuillez réessayer plus tard.',
+});
+
+// Limitation de taux pour les tentatives de connexion
+const loginLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 10, // Limiter chaque IP à 10 tentatives de connexion par fenêtre
+  message: 'Trop de tentatives de connexion à partir de cette IP. Veuillez réessayer plus tard.',
+});
+
+// Limitation de taux pour les demandes de réinitialisation de mot de passe
+const resetPasswordLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 5, // Limiter chaque IP à 5 demandes de réinitialisation de mot de passe par fenêtre
+  message: 'Trop de demandes de réinitialisation de mot de passe à partir de cette IP. Veuillez réessayer plus tard.',
+});
 
 // Fonction utilitaire pour envoyer des emails
 const envoyerEmail = async (destinataire, sujet, texte) => {
@@ -32,7 +55,7 @@ const envoyerEmail = async (destinataire, sujet, texte) => {
 };
 
 // Contrôleur pour l'inscription de l'utilisateur
-export const register = async (req, res) => {
+export const register = [registerLimiter, async (req, res) => {
   const { username, email, password } = req.body;
 
   try {
@@ -76,10 +99,10 @@ export const register = async (req, res) => {
     console.error('Erreur lors de l\'inscription :', error);
     res.status(500).json({ message: 'Erreur du serveur', error: error.message });
   }
-};
+}];
 
 // Contrôleur pour la connexion de l'utilisateur
-export const login = async (req, res) => {
+export const login = [loginLimiter, async (req, res) => {
   const { email, password } = req.body;
 
   try {
@@ -115,7 +138,7 @@ export const login = async (req, res) => {
     console.error('Erreur lors de la connexion :', error);
     res.status(500).json({ message: 'Erreur du serveur' });
   }
-};
+}];
 
 // Contrôleur pour vérifier le code de vérification pour la double authentification
 export const verifyUser = async (req, res) => {
@@ -305,7 +328,7 @@ export const getUsersCountByPeriod = async (req, res) => {
 };
 
 // Contrôleur pour envoyer un email de réinitialisation de mot de passe
-export const sendResetPasswordEmail = async (req, res) => {
+export const sendResetPasswordEmail = [resetPasswordLimiter, async (req, res) => {
   const { email } = req.body;
 
   try {
@@ -341,4 +364,4 @@ export const sendResetPasswordEmail = async (req, res) => {
     console.error('Erreur lors de l\'envoi de l\'email de réinitialisation de mot de passe :', error);
     res.status(500).json({ message: 'Erreur du serveur', error: error.message });
   }
-};
+}];
