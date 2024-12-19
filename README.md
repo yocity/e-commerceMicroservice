@@ -6,7 +6,6 @@
 - Authentification centralisée.
 
 ### Technologies Utilisées
-- **Backend** : NestJS (architecture microservices)
 - **Base de données** : MySQL (chaque service peut avoir sa propre base)
 - **Authentification** : JWT
 
