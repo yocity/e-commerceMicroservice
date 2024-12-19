@@ -19,8 +19,6 @@
    cd services/<nom-du-service>
    npm install
    ```
-3. Configurez les variables d'environnement pour chaque service dans `config/.env`.
-4. Lancez RabbitMQ pour la communication entre services.
 5. Démarrez chaque service individuellement :
    ```bash
    npm run start
